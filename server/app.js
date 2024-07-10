@@ -64,7 +64,7 @@ app.use(helmet());
 // but we need to give frontend(react) running host address here
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://farmer-connect-world.vercel.app",
     credentials: true,
     optionsSuccessStatus: 200,
   })
@@ -81,7 +81,7 @@ app.use(
 const io = socketIo(server, {
   cors: {
     path: "/api/chat",
-    origin: "http://localhost:3000",
+    origin: "https://farmer-connect-world.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
