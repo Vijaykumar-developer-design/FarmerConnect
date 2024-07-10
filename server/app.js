@@ -136,6 +136,13 @@ const io = socketIo(server, {
     credentials: true,
   },
 });
+io.origins((origin, callback) => {
+  if (origin === "https://farmer-connect-world.vercel.app") {
+    callback(null, true);
+  } else {
+    callback("Origin not allowed", false);
+  }
+});
 // Middleware to handle JSON and URL-encoded data
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -229,8 +236,8 @@ app.delete("/api/userschatbox", verifyAuthorization, deleteUsersChatboxHandler);
 
 // Start server
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-module.exports = app;
+module.exports = server;
