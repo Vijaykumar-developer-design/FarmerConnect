@@ -87,7 +87,17 @@ const app = express();
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
+app.use(
+  cors({
+    origin: "https://farmer-connect-world.vercel.app",
+    methods: ["GET", "POST", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+    credentials: true,
+  })
+);
 
+// Handle preflight requests explicitly
+app.options("*", cors());
 // const corsOptions = {
 //   origin: "https://farmer-connect-world.vercel.app",
 //   methods: ["GET", "POST", "OPTIONS"],
@@ -100,35 +110,35 @@ const server = http.createServer(app);
 // app.use(cors());
 
 // Set CORS headers manually
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://farmer-connect-world.vercel.app"
-  );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, X-Requested-With, Authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 // app.options("*", cors());
 
 // Handle preflight requests
-app.options("*", (req, res) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://farmer-connect-world.vercel.app"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type, X-Requested-With, Authorization"
-  );
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.sendStatus(200);
-});
+// app.options("*", (req, res) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.sendStatus(200);
+// });
 
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
