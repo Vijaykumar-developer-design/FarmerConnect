@@ -51,26 +51,26 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 // Helmet configuration
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        "default-src": ["'self'"],
-        "img-src": [
-          "'self'",
-          "data:",
-          "https://farmer-connect-server-application.vercel.app/api",
-        ],
-        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
-      },
-    },
-    crossOriginResourcePolicy: { policy: "cross-origin" },
-    hsts: true,
-    xssFilter: true,
-    noSniff: true,
-    frameguard: { action: "deny" },
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         "default-src": ["'self'"],
+//         "img-src": [
+//           "'self'",
+//           "data:",
+//           "https://farmer-connect-server-application.vercel.app/api",
+//         ],
+//         "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
+//       },
+//     },
+//     crossOriginResourcePolicy: { policy: "cross-origin" },
+//     hsts: true,
+//     xssFilter: true,
+//     noSniff: true,
+//     frameguard: { action: "deny" },
+//   })
+// );
 
 // app.use((req, res, next) => {
 //   console.log(`Request: ${req.method} ${req.url}`);
