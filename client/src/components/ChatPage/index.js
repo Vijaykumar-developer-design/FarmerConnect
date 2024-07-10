@@ -22,19 +22,15 @@ const ChatPage = () => {
   const [userInput, setUserInput] = useState("");
   const inputRef = useRef(null);
   const chatBoxRef = useRef(null); // Reference to the chat box container
-  const [socket, setSocket] = useState(null);
 
+  const [socket, setSocket] = useState(null);
   useEffect(() => {
     // Create socket connection when the component mounts
     const socketInstance = io(`${ApiUrl}/chat`, {
-      withCredentials: true,
-      extraHeaders: {
-        Authorization: `Bearer ${jwt_token}`,
-      },
-      query: {
-        receiverId: userId,
-        senderId: senderId,
-      },
+      query: { receiverId: userId, senderId: senderId },
+      auth: {
+        token: jwt_token,
+      }, // Pass userId as a query parameter
     });
 
     // Save the socket instance in state
@@ -44,12 +40,14 @@ const ChatPage = () => {
     return () => {
       socketInstance.disconnect();
     };
-  }, [userId, senderId, jwt_token]);
+  }, [userId, senderId, jwt_token]); // Re-establish socket connection when these dependencies change
 
   useEffect(() => {
     // Listen for initial messages when socket is defined
     if (socket) {
+      // console.log("fetched initial");
       socket.on("initial_messages", (initialMessages) => {
+        // console.log("initial=>", initialMessages);
         const filterMessages = initialMessages.filter(
           (each) =>
             (each.senderId === senderId && each.receiverId === userId) ||
@@ -70,6 +68,7 @@ const ChatPage = () => {
   useEffect(() => {
     if (socket) {
       socket.on("receive_message", (newMessage) => {
+        // console.log("receive==>", newMessage);
         const condition =
           (newMessage.senderId === senderId &&
             newMessage.receiverId === userId) ||
@@ -87,7 +86,8 @@ const ChatPage = () => {
     };
   }, [socket, senderId, userId]);
 
-  const sendMessage = () => {
+  const sendMessage = (e) => {
+    // e.preventDefault();
     if (userInput.trim() !== "") {
       const messageObj = {
         receiverId: userId,
@@ -101,14 +101,13 @@ const ChatPage = () => {
       setUserInput("");
     }
   };
-
   const handleKeyDown = (e) => {
+    // e.preventDefault();
     if (e.key === "Enter") {
       e.preventDefault(); // Prevent form submission
       sendMessage(); // Call sendMessage function when Enter key is pressed
     }
   };
-
   useEffect(() => {
     // Function to scroll to the bottom of the chat box
     const scrollToBottom = () => {
@@ -126,6 +125,7 @@ const ChatPage = () => {
     inputRef.current.focus();
   }, []);
 
+  // console.log("usermesse==>", messages);
   return (
     <div className="chatpage-bg">
       <nav className="chat-navpage">
@@ -189,5 +189,4 @@ const ChatPage = () => {
     </div>
   );
 };
-
 export default ChatPage;
