@@ -69,14 +69,14 @@ const corsOptions = {
 // it means if server running in anyport it can take resources from ui hosting port
 // but we need to give frontend(react) running host address here
 app.use(cors(corsOptions));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
@@ -92,7 +92,7 @@ app.use(express.urlencoded({ extended: true }));
 // Handle preflight requests
 app.options("*", cors(corsOptions));
 // database connection address
-const uri = process.env.DATABSE_ADDRESS || "mongodb://127.0.0.1:27017/farmers";
+const uri = process.env.DATABSE_ADDRESS;
 // Connect to MongoDB
 mongoose
   .connect(uri, {
