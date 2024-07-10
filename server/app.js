@@ -87,27 +87,16 @@ const app = express();
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
-app.use(
-  cors({
-    origin: "https://farmer-connect-world.vercel.app",
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
-    credentials: true,
-  })
-);
 
-// Handle preflight requests explicitly
-app.options("*", cors());
-// const corsOptions = {
-//   origin: "https://farmer-connect-world.vercel.app",
-//   methods: ["GET", "POST", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
+const corsOptions = {
+  origin: "https://farmer-connect-world.vercel.app",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
+};
 
-// app.use(cors(corsOptions));
-// app.use(cors());
+app.use(cors(corsOptions));
 
 // Set CORS headers manually
 // app.use((req, res, next) => {
@@ -125,21 +114,20 @@ app.options("*", cors());
 // });
 // app.options("*", cors());
 
-// Handle preflight requests
-// app.options("*", (req, res) => {
-//   res.header(
-//     "Access-Control-Allow-Origin",
-//     "https://farmer-connect-world.vercel.app"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Content-Type, X-Requested-With, Authorization"
-//   );
-//   res.header("Access-Control-Allow-Credentials", "true");
-//   res.sendStatus(200);
-// });
-
+// Handle preflight requests explicitly
+app.options("*", (req, res) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://farmer-connect-world.vercel.app"
+  );
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Requested-With, Authorization"
+  );
+  res.header("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(200);
+});
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
