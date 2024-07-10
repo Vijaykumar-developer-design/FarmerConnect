@@ -72,6 +72,18 @@ app.use(
   })
 );
 
+app.use((req, res, next) => {
+  console.log(`Request: ${req.method} ${req.url}`);
+  console.log(`Headers: ${JSON.stringify(req.headers)}`);
+  next();
+});
+
+// Log response headers in each route handler
+app.post("/api/signin", (req, res) => {
+  console.log(`Response Headers: ${JSON.stringify(res.getHeaders())}`);
+  // Your route handling logic
+});
+
 // Middleware to handle JSON and URL-encoded data
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
