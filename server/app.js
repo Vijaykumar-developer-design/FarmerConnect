@@ -1,6 +1,84 @@
+// const mongoose = require("mongoose");
+// const express = require("express");
+// const helmet = require("helmet");
+// const cors = require("cors");
+// const bodyParser = require("body-parser");
+// require("dotenv").config();
+
+// const app = express();
+// const http = require("http");
+// const socketIo = require("socket.io");
+// const server = http.createServer(app);
+// // origin: "https://farmer-connect-world.vercel.app",
+// const corsOptions = {
+//   origin: "https://farmer-connect-world.vercel.app",
+//   methods: ["GET", "POST", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
+
+// // Apply CORS middleware
+// app.use(cors(corsOptions));
+
+// // Set CORS headers manually
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
+
+// // Handle preflight requests
+// app.options("*", (req, res) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.sendStatus(200);
+// });
+// Helmet configuration
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         "default-src": ["'self'"],
+//         "img-src": [
+//           "'self'",
+//           "data:",
+//           "https://farmer-connect-server-application.vercel.app/api",
+//         ],
+//         "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
+//       },
+//     },
+//     crossOriginResourcePolicy: { policy: "cross-origin" },
+//     hsts: true,
+//     xssFilter: true,
+//     noSniff: true,
+//     frameguard: { action: "deny" },
+//   })
+// );
+
+// app.use((req, res, next) => {
+//   console.log(`Request: ${req.method} ${req.url}`);
+//   console.log(`Headers: ${JSON.stringify(req.headers)}`);
+//   next();
+// });
 const mongoose = require("mongoose");
 const express = require("express");
-const helmet = require("helmet");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 require("dotenv").config();
@@ -9,7 +87,7 @@ const app = express();
 const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
-// origin: "https://farmer-connect-world.vercel.app",
+
 const corsOptions = {
   origin: "https://farmer-connect-world.vercel.app",
   methods: ["GET", "POST", "OPTIONS"],
@@ -18,7 +96,6 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-// Apply CORS middleware
 app.use(cors(corsOptions));
 
 // Set CORS headers manually
@@ -50,38 +127,6 @@ app.options("*", (req, res) => {
   res.header("Access-Control-Allow-Credentials", "true");
   res.sendStatus(200);
 });
-// Helmet configuration
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         "default-src": ["'self'"],
-//         "img-src": [
-//           "'self'",
-//           "data:",
-//           "https://farmer-connect-server-application.vercel.app/api",
-//         ],
-//         "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
-//       },
-//     },
-//     crossOriginResourcePolicy: { policy: "cross-origin" },
-//     hsts: true,
-//     xssFilter: true,
-//     noSniff: true,
-//     frameguard: { action: "deny" },
-//   })
-// );
-
-// app.use((req, res, next) => {
-//   console.log(`Request: ${req.method} ${req.url}`);
-//   console.log(`Headers: ${JSON.stringify(req.headers)}`);
-//   next();
-// });
-
-// Middleware to handle JSON and URL-encoded data
-app.use(express.json({ limit: "40mb" }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
 
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
@@ -91,7 +136,10 @@ const io = socketIo(server, {
     credentials: true,
   },
 });
-
+// Middleware to handle JSON and URL-encoded data
+app.use(express.json({ limit: "40mb" }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 // Database connection
 const uri = process.env.DATABASE_ADDRESS;
 mongoose
