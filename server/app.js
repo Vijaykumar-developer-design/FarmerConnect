@@ -6,16 +6,22 @@ const bodyParser = require("body-parser");
 require("dotenv").config();
 
 const app = express();
-//chat modules
-const socketIo = require("socket.io");
 const http = require("http");
+const socketIo = require("socket.io");
 const server = http.createServer(app);
 
-// Use the editProfileRoute middleware
-// telling to the express that json object included in api request
-app.use(express.json({ limit: "40mb" }));
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.urlencoded({ extended: true }));
+const corsOptions = {
+  origin: "https://farmer-connect-world.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
+
+// Apply CORS middleware
+app.use(cors(corsOptions));
+
+// Helmet configuration
 app.use(
   helmet({
     contentSecurityPolicy: {
@@ -25,25 +31,24 @@ app.use(
           "'self'",
           "data:",
           "https://farmer-connect-server.vercel.app/api",
-        ], // Allow image source
-        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"], // Allow API calls
+        ],
+        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
       },
     },
     crossOriginResourcePolicy: { policy: "cross-origin" },
-    // Additional security headers
     hsts: true,
     xssFilter: true,
     noSniff: true,
     frameguard: { action: "deny" },
   })
 );
-const corsOptions = {
-  origin: "https://farmer-connect-world.vercel.app",
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
-  credentials: true,
-};
-app.use(cors(corsOptions));
+
+// Middleware to handle JSON and URL-encoded data
+app.use(express.json({ limit: "40mb" }));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+
+// Set CORS headers manually
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
@@ -57,121 +62,35 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
-app.options("*", cors(corsOptions)); // preflight OPTIONS request
-app.use(express.urlencoded({ extended: true }));
-// express security
-// app.use(helmet());
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         "default-src": ["'self'"],
-//         "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"], // Allow API calls
-//       },
-//     },
-//     crossOriginResourcePolicy: { policy: "cross-origin" },
-//     // Additional security headers
-//     hsts: true,
-//     xssFilter: true,
-//     noSniff: true,
-//     frameguard: { action: "deny" },
-//   })
-// );
-// const corsOptions = {
-//   origin: "https://farmer-connect-world.vercel.app", // your frontend domain
-//   methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
-//   allowedHeaders: ["Content-Type", "Authorization"], // allowed headers
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
-// const corsOptions = {
-//   origin: "https://farmer-connect-world.vercel.app",
-//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//   allowedHeaders: ["Content-Type", "Authorization"],
-//   credentials: true,
-//   optionsSuccessStatus: 200,
-// };
 
-// app.use(cors(corsOptions));
-// app.use((req, res, next) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://farmer-connect-world.vercel.app"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET, POST, OPTIONS, PUT, DELETE"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Content-Type, X-Requested-With, Authorization"
-//   );
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   next();
-// });
-
-// app.options("*", (req, res) => {
-//   res.setHeader(
-//     "Access-Control-Allow-Origin",
-//     "https://farmer-connect-world.vercel.app"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Methods",
-//     "GET, POST, OPTIONS, PUT, DELETE"
-//   );
-//   res.setHeader(
-//     "Access-Control-Allow-Headers",
-//     "Content-Type, X-Requested-With, Authorization"
-//   );
-//   res.setHeader("Access-Control-Allow-Credentials", "true");
-//   res.sendStatus(200);
-// }); // preflight OPTIONS request
-// app.use(express.urlencoded({ extended: true }));
-// it means if server running in anyport it can take resources from ui hosting port
-// but we need to give frontend(react) running host address here
-// app.use(cors(corsOptions));
 // Handle preflight requests
-// app.options("*", cors(corsOptions));
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept"
-//   );
-//   next();
-// });
-// app.use((req, res, next) => {
-//   res.header(
-//     "Access-Control-Allow-Origin",
-//     "https://farmer-connect-world.vercel.app"
-//   );
-//   res.header(
-//     "Access-Control-Allow-Headers",
-//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-//   );
-//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-//   next();
-// });
+app.options("*", (req, res) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://farmer-connect-world.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Requested-With, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(200);
+});
+
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
-    path: "/api/chat",
     origin: "https://farmer-connect-world.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
   },
 });
-// console.log("port===>>", process.env.PORT);
-// Middleware to parse URL-encoded data
-const port = process.env.PORT || 5000;
-// database connection address
-const uri = process.env.DATABSE_ADDRESS;
-// Connect to MongoDB
+
+// Database connection
+const uri = process.env.DATABASE_ADDRESS;
 mongoose
-  .connect(uri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     console.log("Connected to MongoDB");
   })
@@ -179,18 +98,7 @@ mongoose
     console.error("MongoDB connection error:", error);
   });
 
-// Serve static files from the "uploads" directory
-// app.use("/uploads", express.static(path.join(__dirname, "uploads")));
-// app.use(
-//   "/uploads/profiles",
-//   express.static(path.join(__dirname, "uploads/profiles"))
-// );
-// app.use(
-//   "/uploads/posts",
-//   express.static(path.join(__dirname, "uploads/posts"))
-// );
-
-// };
+// Import handlers and middlewares
 const { postImageUpload } = require("./middlewares/multerConfig");
 const updateProfileHandler = require("./handlers/updateProfileHandler");
 const signUpHandler = require("./handlers/signUpHandler");
@@ -215,12 +123,8 @@ const {
 } = require("./handlers/chatHandler");
 
 const getChatUsersHandler = require("./handlers/getChatUsersHandler");
-// socket.ioChat chatting between two users
-
-// Initialize chat namespace
 
 // Middleware to authenticate socket connections
-
 io.use(authenticateSocket);
 
 // Handle socket connections
@@ -229,84 +133,46 @@ io.on("connection", handleConnection);
 // Initialize chat namespace (/chat) with custom handling
 initializeChatNamespace(io);
 
+// Routes
 app.post(
   "/api/editprofile",
   verifyAuthorization,
   postImageUpload.single("file"),
   updateProfileHandler
 );
-
-// Signin/login
 app.post("/api/signin", signInHandler);
-
-// Signup/Register
-
 app.post("/api/signup", signUpHandler);
-
-// forgot password API
 app.post("/api/forgot", forgotPasswordHandler);
-
 app.get("/api/profile/:userId", verifyAuthorization, userProfileHandler);
-
-//delete userProfile API
-
 app.delete("/api/profile/:userId", verifyAuthorization, deleteProfileHandler);
-
-// upload post API
-
 app.post(
   "/api/uploadpost",
   verifyAuthorization,
   postImageUpload.single("file"),
   uploadPostHandler
 );
-
-// like post from home page API
-
 app.put("/api/home/:id", verifyAuthorization, likeUnlikePostHandler);
-
-// getting all posts details API
-
 app.get("/api/home/:id", verifyAuthorization, getPostsHandler);
-
-// delete specific post from home page API
-
 app.delete("/api/home/:id", verifyAuthorization, deletePostHandler);
-
-// like post in the userprofile API
-
 app.post("/api/userprofile/:id", verifyAuthorization, likeDislikePostHandler);
-
-// delete post from profile API
-
 app.delete(
   "/api/userprofile/:id",
   verifyAuthorization,
   deletePostFromProfileHandler
 );
-
-// getting specific userprofile API
-
 app.get("/api/userprofile/:userId", verifyAuthorization, getUserProfileHandler);
-
-// follow/unfollow user profile API
-
 app.put(
   "/api/userprofile/:userId",
   verifyAuthorization,
   updateUserProfileHandler
 );
-
-//getting all users
-
 app.get("/api/userschatbox", verifyAuthorization, getChatUsersHandler);
-// deleting userChat API
 app.delete("/api/userschatbox", verifyAuthorization, deleteUsersChatboxHandler);
 
-// starting server
-
+// Start server
+const port = process.env.PORT || 5000;
 server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-// we are exporting only server because server is crated using app on the above
+
 module.exports = server;
