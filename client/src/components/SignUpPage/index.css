@@ -1,0 +1,82 @@
+.sign-up-success-bg {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-success-up {
+  /* background-color: #bcf0f7; */
+  border-radius: 10px;
+  /* padding: 5px; */
+  padding-left: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.form-success-label-up {
+  font-family: Bree Serif;
+  font-size: 20px;
+  font-weight: bold;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.form-success-input-up {
+  width: 80%;
+  outline: none;
+  background-color: white;
+  border-radius: 4px;
+  /* height: 40px; */
+  padding: 12px;
+  margin-top: 5px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.input-containers-up {
+  margin-top: 10px;
+}
+.sign-up-button {
+  color: white;
+  font-family: Bree serif;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 100px;
+  text-align: center;
+  font-size: 20px;
+  /* margin-top: 25px; */
+  cursor: pointer;
+  border: none;
+}
+.show-password-icon {
+  font-size: 30px;
+  margin-right: 10px;
+  color: blue;
+}
+.password-show-parent {
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.sign-up {
+  font-family: Bree serif;
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+}
+.signup-error {
+  color: red;
+}
+@media screen and (max-width: 576px) {
+  .form-success-up {
+    margin: 10px;
+  }
+  .form-success-label-up {
+    font-size: 20px;
+  }
+  .form-success-input-up {
+    padding: 12px;
+  }
+  .input-containers-up {
+    margin-top: 20px;
+  }
+}

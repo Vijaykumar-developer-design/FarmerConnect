@@ -1,0 +1,138 @@
+.post-pic {
+  height: 55px;
+  width: 55px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.post-card {
+  border-radius: 5px;
+  padding: 6px;
+  box-shadow: 0px 0px 5px 5px lightgray;
+  margin-top: 15px;
+  margin-left: 10px;
+  /* width: 95%; */
+  width: 80%;
+  margin-bottom: 8px;
+  background-color: white;
+  /* min-width: 500px; */
+}
+.post-profile {
+  display: flex;
+  justify-content: space-between;
+}
+.user-pic-about {
+  display: flex;
+}
+.post-name-state {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  margin-top: 5px;
+}
+.user-state {
+  font-size: 10px;
+  margin-top: -10px;
+}
+.post-user-name {
+  font-size: 14px;
+  margin-top: 0px;
+}
+.user-post-image {
+  width: 100%;
+  height: 230px;
+  margin-top: 5px;
+}
+/* .user-posts-bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+} */
+.show-more-btn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: gray;
+  cursor: pointer;
+  color: blue;
+}
+.post-description {
+  margin-left: 10px;
+  margin-right: 10px;
+  overflow: hidden;
+  /* border: 2px solid red; */
+}
+.delete-icon {
+  font-size: 30px;
+}
+.profile-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.delete-btn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.liked-post {
+  color: blue;
+  margin-left: 6px;
+}
+.specific-link {
+  color: black;
+  text-decoration: none;
+  width: 80%;
+}
+.detail-delete-btn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.detail-delete-icon {
+  font-size: 25px;
+}
+.like-icon {
+  font-size: 30px;
+  outline: none;
+}
+.like-btn {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.like-contanier {
+  display: flex;
+  align-items: center;
+}
+@media screen and (max-width: 576px) {
+  .post-pic {
+    height: 50px;
+    width: 50px;
+    margin-right: 6px;
+  }
+  .user-state {
+    font-size: 13px;
+    /* color: gray; */
+  }
+  .detail-delete-icon {
+    font-size: 25px;
+  }
+  .post-card {
+    width: 90%;
+  }
+  .user-post-image {
+    height: 220px;
+  }
+  .liked-post {
+    margin-left: 2px;
+    font-size: 15px;
+  }
+  .like-btn {
+    margin-right: 3px;
+  }
+}

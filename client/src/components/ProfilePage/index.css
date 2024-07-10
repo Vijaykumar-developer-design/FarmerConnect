@@ -1,0 +1,335 @@
+.profile-bg {
+  min-height: 100vh;
+  padding: 10px;
+  background-color: #f0f3ff;
+}
+.profile-head {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100px;
+}
+.profile-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  background-color: gray;
+  margin-right: 20px;
+  margin-left: 10px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-image: radial-gradient(green, orange); */
+  /* background-color: #21b559; */
+}
+.profile-text {
+  display: flex;
+  align-items: center;
+}
+.intro {
+  margin-top: -12px;
+  font-family: "Bree Serif";
+}
+
+.logout-icon {
+  font-size: 25px;
+  color: red;
+}
+.logout-btn {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  color: white;
+  font-family: "Bree Serif";
+  font-weight: 500;
+  font-size: 20px;
+  cursor: pointer;
+}
+.logout-div {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 130px;
+  border-radius: 3px;
+  padding: 5px;
+  background-color: blue;
+  margin-right: 20px;
+  cursor: pointer;
+}
+.delete-profile-btn {
+  border: 2px solid red;
+  outline: none;
+  padding: 10px;
+  border-radius: 3px;
+  color: red;
+  background-color: white;
+}
+.delete-profile-btn:hover {
+  background-color: red;
+  color: white;
+}
+.about-head {
+  font-weight: bold;
+  font-family: "Bree Serif";
+  padding-left: 10px;
+}
+.brief-intro {
+  font-family: "Bree Serif";
+  padding-left: 10px;
+}
+.member-text {
+  font-family: "Bree Serif";
+  color: #18cc27;
+  padding-left: 10px;
+}
+.hr-line {
+  height: 3px;
+  background-color: black;
+  width: 99%;
+}
+.btns {
+  background-color: #96efff;
+  color: #001b79;
+  outline: none;
+  border: none;
+  border-radius: 4px;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: "Bree Serif";
+  margin-right: 40px;
+}
+.buttons-container {
+  padding-left: 10px;
+}
+.highlight-text {
+  font-weight: bold;
+  font-family: Bree Serif;
+  padding-left: 10px;
+}
+.cultivation-head {
+  padding-left: 10px;
+  font-weight: bold;
+}
+.cultivations {
+  font-size: 15px;
+  color: gray;
+}
+.profile-image {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  /* border: 2px solid blue; */
+}
+.profile-follower-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.profile-follower-parent {
+  width: 96%;
+  display: flex;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 4px gray;
+  margin: 10px;
+  margin-bottom: 25px;
+  background-color: #f1eaff;
+}
+.profile-follower-name {
+  margin-top: 0px;
+  color: black;
+}
+.profile-follower-name-state {
+  margin-left: 20px;
+  font-family: "Roboto";
+}
+.profile-follower-link {
+  text-decoration: none;
+}
+.profile-follower-state {
+  margin-top: -10px;
+  color: black;
+}
+.profile-follower-member {
+  margin-top: -10px;
+  color: green;
+}
+.profile-followers-bg {
+  width: 100%;
+}
+.profile-followers-parent-bg {
+  margin-top: 20px;
+  width: 96%;
+  /* margin-left: 5px; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-user-post-details-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f0f3ff;
+  /* border: 2px solid red; */
+  padding-top: 20px;
+}
+.profile-user-post-details {
+  width: 100%;
+}
+.profile-user-name {
+  color: black;
+  font-family: "Roboto";
+  margin-top: -10px;
+}
+.profile-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* border: 2px solid red; */
+}
+.profile-failure-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: red;
+  text-align: center;
+}
+.profile-failure-msg {
+  color: green;
+}
+.delete-profile-parent {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: rgb(47, 255, 89);
+}
+.delete-logout-btns-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 2px solid red; */
+  width: 50%;
+}
+@media screen and (max-width: 576px) {
+  .profile-text {
+    width: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .delete-logout-btns-parent {
+    width: 60%;
+    margin-top: 10px;
+  }
+  .profile-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 15px;
+    height: 150px;
+  }
+  .delete-profile-btn {
+    outline: none;
+    border-radius: 3px;
+    color: red;
+    padding: 6px;
+    background-color: white;
+  }
+  .profile-bg {
+    padding: 5px;
+  }
+  .profile-image {
+    width: 80px;
+    height: 80px;
+  }
+  .profile-pic {
+    height: 60px;
+    width: 60px;
+    margin-right: 15px;
+  }
+  .profile-user-name {
+    font-size: 18px;
+    margin-top: 0px;
+  }
+  .intro {
+    font-size: 12px;
+  }
+  .logout-btn {
+    font-size: 15px;
+    padding: 3px;
+  }
+  .logout-div {
+    width: 70px;
+    padding: 4px;
+    margin-right: 5px;
+    margin-left: 2px;
+  }
+  .logout-icon {
+    font-size: 20px;
+  }
+  .about-head {
+    font-size: 20px;
+  }
+  .hr-line {
+    height: 1px;
+  }
+  .btns {
+    width: 100px;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding: 8px;
+    border-radius: 2px;
+  }
+  .buttons-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+  }
+  .member-text {
+    font-size: 15px;
+    color: lightseagreen;
+  }
+  .cultivation-head {
+    font-size: 14px;
+  }
+  .cultivations {
+    font-size: 12px;
+  }
+  .address {
+    font-size: 15px;
+    color: gray;
+  }
+  .profile-follower-pic {
+    height: 70px;
+    width: 70px;
+  }
+  .profile-follower-state {
+    margin-top: -15px;
+    font-size: 13px;
+  }
+  .profile-follower-name {
+    font-size: 14px;
+  }
+  .profile-follower-member {
+    font-size: 12px;
+  }
+  .profile-follower-parent {
+    /* width: 90%; */
+    padding: 5px;
+  }
+  .profile-follower-name-state {
+    margin-left: 10px;
+  }
+}

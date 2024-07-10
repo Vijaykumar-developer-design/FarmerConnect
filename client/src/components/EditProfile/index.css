@@ -1,0 +1,267 @@
+.edit-profile-bg {
+  min-height: 100vh;
+  padding: 10px;
+}
+.upload-profile-img {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  background-color: lightgrey;
+  margin-right: 40px;
+  /* border: 2px solid rgb(72, 67, 67); */
+  cursor: pointer;
+  /* margin-left: 20px; */
+}
+.profile-pic-edit {
+  /* border: 2px solid red; */
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  /* margin-top: 30px; */
+}
+.profiles-icon {
+  display: flex;
+  /* border: 2px solid red; */
+}
+.add-image-icon {
+  font-size: 40px;
+  color: green;
+  align-self: flex-end;
+  margin-left: -70px;
+  cursor: pointer;
+}
+.edit-head {
+  display: flex;
+  align-items: center;
+  /* border: 2px solid red; */
+}
+
+.person-details {
+  list-style: none;
+  /* border: 2px solid red; */
+  width: 150px;
+}
+.input-types {
+  /* border: 2px solid red; */
+  margin-top: 8px;
+  width: 80%;
+  margin-left: 10px;
+}
+
+li {
+  margin-bottom: 30px;
+}
+.all-inputs {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  /* border: 2px solid green; */
+  width: 100%;
+}
+
+/* .name-input-box {
+    padding: 10px;
+    border: outset;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 80%;
+  } */
+.name-occupation-contact {
+  padding: 10px;
+  border: outset;
+  outline: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  width: 80%;
+}
+/* .occupation-input {
+    padding: 10px;
+    border: outset;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+   
+  } */
+/* .contact-input-box {
+    padding: 10px;
+    border: outset;
+    outline: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    /* width: 53%; */
+/* }  */
+.edit-about-head {
+  margin-left: 10px;
+}
+.edit-about {
+  padding: 10px;
+  border: outset;
+  outline: none;
+  border-radius: 5px;
+  width: 50%;
+  margin-left: 10px;
+}
+.viilage-mandal-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+  margin-left: 10px;
+  /* border: 2px solid red; */
+}
+.village-input {
+  width: 25%;
+  /* border: 2px solid red; */
+  display: flex;
+  flex-direction: column;
+}
+.village-input-box {
+  padding: 10px;
+  border: outset;
+  outline: none;
+  border-radius: 5px;
+  width: 70%;
+}
+.mandal-input {
+  width: 25%;
+  /* border: 2px solid green; */
+}
+.mandal-input-box {
+  padding: 10px;
+  border: outset;
+  outline: none;
+  border-radius: 5px;
+  width: 70%;
+}
+.crop-input {
+  display: flex;
+  flex-direction: column;
+  margin-left: 10px;
+  width: 30%;
+  margin-top: 10px;
+  /* border: 2px solid red; */
+}
+.crop-input-box {
+  width: 90%;
+  padding: 10px;
+  border: outset;
+  outline: none;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.all-cultivations {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  /* justify-content: space-between;s */
+}
+.label-edit {
+  font-weight: bold;
+  font-family: "Bree Serif";
+}
+.save-btn {
+  width: 120px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  font-family: Roboto;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 5px;
+  border-radius: 5px;
+  font-size: 25px;
+}
+.save-btn-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+.image-label {
+  /* border: 2px solid red; */
+  border-radius: 50px;
+  height: 100px;
+  width: 100px;
+  border-radius: 50px;
+  margin-right: 40px;
+  margin-left: 20px;
+}
+.error-edit {
+  color: red;
+  text-align: center;
+}
+@media screen and (max-width: 576px) {
+  .edit-head {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .all-inputs {
+    /* border: 2px solid red; */
+    /* margin-left: -10px; */
+  }
+  .person-details {
+    margin-left: -30px;
+  }
+  .name-occupation-contact {
+    margin-left: -5px;
+    width: 88%;
+  }
+  .viilage-mandal-container {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    width: 100%;
+  }
+  .village-input-box {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .mandal-input-box {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+  .village-input {
+    width: 90%;
+  }
+  .mandal-input {
+    width: 90%;
+  }
+  .edit-about {
+    width: 90%;
+  }
+  .all-cultivations {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .crop-input {
+    width: 90%;
+  }
+  .crop-input-box {
+    width: 100%;
+  }
+  .save-btn-container {
+    margin-top: 20px;
+  }
+  .save-btn {
+    font-size: 20px;
+    width: 100px;
+  }
+  .label-edit {
+    margin-bottom: 5px;
+  }
+  .edit-about-head {
+    font-size: 20px;
+  }
+}

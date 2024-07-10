@@ -1,0 +1,98 @@
+.user-chat-box-bg {
+  min-height: 100vh;
+  /* border: 2px solid red; */
+}
+
+.chat-user-profile-pic {
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+.chat-user-profile-name {
+  font-family: "Roboto";
+  /* color: #8b93ff; */
+  color: #176b87;
+}
+.chat-empty-profile {
+  font-size: 100px;
+  margin-right: 10px;
+  margin-left: -10px;
+}
+.chatuser-parent {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 5px;
+  background-color: #f1eaff;
+  border-radius: 4px;
+  width: 98%;
+  text-decoration: none;
+  padding: 5px;
+}
+.chatuser-profile {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+  /* background-color: #97e7e1; */
+  background-color: #f1eaff;
+  border-radius: 4px;
+  width: 50%;
+  text-decoration: none;
+  cursor: pointer;
+  /* border: 2px solid red; */
+}
+.search-user-chat {
+  width: 80%;
+  padding: 8px;
+  border-radius: 5px;
+  outline: none;
+  background-color: white;
+}
+.chat-user-search-parent {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #86a7fc;
+  padding: 10px;
+  margin-bottom: 10px;
+  position: fixed;
+  height: 50px;
+}
+.clear-btn {
+  background-color: inherit;
+  color: blue;
+  font-weight: 500;
+  outline: none;
+  border: none;
+  font-size: 18px;
+  margin-right: 10px;
+}
+.clear-btn:hover {
+  color: red;
+}
+.back-tohome-arrow {
+  font-size: 30px;
+  color: white;
+  margin-left: 20px;
+  cursor: pointer;
+  background-color: inherit;
+  border: none;
+  outline: none;
+}
+.chats-parent-users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding-top: 80px;
+}
+@media screen and (max-width: 576px) {
+  .chat-user-profile-name {
+    font-size: 25px;
+  }
+  .chatuser-parent {
+    width: 95%;
+  }
+}

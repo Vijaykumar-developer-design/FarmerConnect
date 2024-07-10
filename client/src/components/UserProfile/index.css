@@ -1,0 +1,258 @@
+.user-bg {
+  min-height: 100vh;
+  padding: 10px;
+  background-color: #dff5ff;
+  font-family: "Bree Serif";
+}
+.user-profile-image {
+  height: 100px;
+  width: 100px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.user-profile-parent {
+  display: flex;
+  padding-left: 10px;
+  /* border: 2px solid red; */
+  height: 100px;
+  /* padding: 10px; */
+}
+.user-name {
+  margin-top: 0px;
+}
+.userprofile-state {
+  margin-top: -15px;
+  font-size: 15px;
+}
+.user-contact {
+  margin-top: -14px;
+}
+.user-connect {
+  color: blue;
+  margin-top: -10px;
+}
+.user-about {
+  margin-top: -15px;
+  margin-left: 10px;
+}
+.user-about-text {
+  margin-left: 10px;
+}
+.user-buttons-parent {
+  width: 95%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  /* border: 2px solid red; */
+  margin-left: -12px;
+}
+.user-btn {
+  margin-left: 25px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+.user-btn-follow {
+  margin-left: 25px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: blue;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+}
+
+.change-color {
+  margin-left: 25px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid blue;
+}
+.change-color-follow {
+  margin-left: 25px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid blue;
+}
+.message-btn {
+  margin-left: 25px;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  color: blue;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 120px;
+  cursor: pointer;
+  outline: none;
+  border: 2px solid blue;
+}
+.user-post-details-list {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-post-details {
+  width: 100%;
+}
+.follower-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+.follower-parent {
+  width: 97%;
+  display: flex;
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 4px 4px gray;
+  /* margin: 10px; */
+  margin-bottom: 25px;
+  background-color: #f1eaff;
+}
+.follower-name {
+  margin-top: 0px;
+  color: black;
+}
+.follower-name-state {
+  margin-left: 20px;
+}
+.follower-link {
+  text-decoration: none;
+}
+.follower-state {
+  margin-top: -10px;
+  color: black;
+}
+.follower-member {
+  margin-top: -10px;
+  color: green;
+}
+.followers-bg {
+  width: 100%;
+}
+.followers-parent-bg {
+  margin-top: 20px;
+  width: 96%;
+  margin-left: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.user-profile-non-img {
+  height: 100px;
+  width: 100px;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+.userprofile-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  /* border: 2px solid red; */
+}
+.userprofile-failure-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  color: red;
+  text-align: center;
+}
+.userprofile-failure-msg {
+  color: green;
+}
+@media screen and (max-width: 576px) {
+  .user-profile-non-img {
+    height: 70px;
+    width: 70px;
+  }
+  .user-profile-image {
+    height: 70px;
+    width: 70px;
+    margin-right: 15px;
+  }
+  .user-connect {
+    font-size: 13px;
+  }
+  .user-state {
+    margin-top: -20px;
+  }
+  .user-contact {
+    font-size: 13px;
+  }
+  .follower-pic {
+    height: 70px;
+    width: 70px;
+  }
+  .follower-name {
+    font-size: 14px;
+  }
+  .follower-state {
+    font-size: 13px;
+    margin-top: -15px;
+  }
+  .follower-member {
+    font-size: 12px;
+  }
+  .follower-parent {
+    padding: 5px;
+  }
+  .change-color-follow {
+    padding: 8px;
+    width: 80px;
+    font-size: 12px;
+  }
+  .user-btn-follow {
+    padding: 8px;
+    width: 80px;
+    font-size: 12px;
+  }
+  .change-color {
+    padding: 8px;
+    width: 80px;
+    font-size: 12px;
+  }
+  .user-btn {
+    padding: 8px;
+    width: 80px;
+    font-size: 12px;
+  }
+  .user-buttons-parent {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    /* justify-content: space-evenly; */
+    /* border: 2px solid red; */
+    margin-left: -12px;
+  }
+}

@@ -1,0 +1,81 @@
+.sign-up-success-bg-forgot {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-success-up-forgot {
+  /* background-color: #bcf0f7; */
+
+  border-radius: 10px;
+  padding: 10px;
+  padding-left: 30px;
+  padding-bottom: 20px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.form-success-label-up-forgot {
+  font-family: Bree Serif;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.form-success-input-up-forgot {
+  width: 80%;
+  outline: none;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding: 15px;
+  margin-top: 10px;
+  border: none;
+}
+.input-containers-up-forgot {
+  margin-top: 25px;
+}
+.sign-button-forgot {
+  color: white;
+  font-family: Bree serif;
+  background-color: black;
+  padding: 10px;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 20px;
+  /* margin-top: 25px; */
+  cursor: pointer;
+  border: none;
+}
+.forgot-error {
+  color: red;
+}
+.forgot-signin {
+  font-family: Bree serif;
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+}
+.show-password-icon-forgot {
+  font-size: 30px;
+  margin-right: 10px;
+  color: blue;
+}
+.password-show-parent-forgot {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 576px) {
+  .form-success-label-up-forgot {
+    font-size: 20px;
+  }
+  .form-success-up-forgot {
+    padding: 5px;
+    margin: 10px;
+    padding-left: 30px;
+  }
+  .sign-button-forgot {
+    font-size: 15px;
+  }
+}

@@ -1,0 +1,45 @@
+.homepage-bg {
+  min-height: 85vh;
+  /* border: 2px solid red; */
+  padding-top: 70px;
+  width: 100%;
+}
+.posts-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 10px;
+  width: 100%;
+}
+.loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+}
+.failure-parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 85vh;
+  color: red;
+  text-align: center;
+}
+.failure-msg {
+  color: green;
+}
+@media screen and (max-width: 576px) {
+  .posts-parent {
+    width: 98%;
+  }
+  .homepage-bg {
+    padding-top: 50px;
+  }
+}
+@media screen and (min-width: 576px) and (max-width: 768px) {
+  .posts-parent {
+    width: 97%;
+  }
+}

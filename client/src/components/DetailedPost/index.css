@@ -1,0 +1,94 @@
+/* .detailed-post-bg {
+  height: 100vh;
+}
+.detail-post-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.detail-post-card {
+  border-radius: 10px;
+  padding: 10px;
+  box-shadow: 0px 0px 5px 5px lightgray;
+  margin: 15px;
+  width: 90%;
+  margin-top: 20px;
+  
+}
+.detailed-unique-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.detail-post-profile {
+  display: flex;
+}
+.detail-post-name-state {
+  display: flex;
+  flex-direction: column;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+.detail-user-state {
+  margin-top: -10px;
+}
+.detail-post-user-name {
+  margin-top: 0px;
+}
+.detail-user-post-image {
+  width: 100%;
+  height: 350px;
+  margin-top: 10px;
+}
+.detail-user-posts-bg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+}
+
+.detail-post-description {
+  margin-left: 10px;
+  margin-right: 10px;
+  
+}
+.detail-delete-icon {
+  font-size: 30px;
+}
+.detail-profile-user {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.detail-delete-btn {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+.like-icon {
+  font-size: 30px;
+}
+.like-btn {
+  background-color: inherit;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-right: 10px;
+}
+.like-contanier {
+  display: flex;
+  align-items: center;
+}
+.detailed-nav {
+  background-color: lightblue;
+  padding: 2px;
+}
+.detailed-profile-pic {
+  border-radius: 50px;
+  height: 70px;
+  width: 70px;
+  margin-left: 7px;
+  margin-top: 2px;
+} */

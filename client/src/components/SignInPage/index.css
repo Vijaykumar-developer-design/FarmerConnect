@@ -1,0 +1,96 @@
+.sign-in-success-bg {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.form-success {
+  /* background-color: #bcf0f7; */
+  border-radius: 10px;
+  padding: 10px;
+  padding-left: 30px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.farmer-logo {
+  text-align: center;
+  font-family: "Times New Roman", Times, serif;
+  background: url("https://res.cloudinary.com/djyawllgy/image/upload/v1720591173/greenary-morning-260nw-1199555566_gwo9vc.jpg");
+  background-size: cover;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-repeat: none;
+  margin-top: 5px;
+}
+.form-success-label {
+  font-family: Bree Serif;
+  font-size: 25px;
+  font-weight: bold;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.form-success-input {
+  width: 80%;
+  outline: none;
+  background-color: white;
+  border-radius: 6px;
+  /* height: 40px; */
+  padding: 15px;
+  margin-top: 10px;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+.input-containers {
+  margin-top: 25px;
+}
+.sign-in-button {
+  color: white;
+  font-family: Bree serif;
+  background-color: black;
+  padding: 5px;
+  border-radius: 5px;
+  min-width: 100px;
+  text-align: center;
+  font-size: 20px;
+  cursor: pointer;
+  border: none;
+}
+.sign-up {
+  font-family: Bree serif;
+  color: blue;
+  cursor: pointer;
+  font-weight: bold;
+}
+.forgot-text {
+  font-size: 15px;
+  background-color: inherit;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-family: "Times New Roman", Times, serif;
+}
+.signin-error {
+  color: red;
+}
+.show-password-icon-signin {
+  font-size: 30px;
+  margin-right: 10px;
+  color: blue;
+}
+.password-show-parent-signin {
+  display: flex;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+@media screen and (max-width: 576px) {
+  .form-success {
+    margin: 10px;
+  }
+  .form-success-label {
+    font-size: 20px;
+  }
+  .form-success-input {
+    padding: 12px;
+  }
+}
