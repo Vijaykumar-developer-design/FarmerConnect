@@ -58,19 +58,40 @@ app.use(
     crossOriginResourcePolicy: { policy: "cross-origin" },
   })
 );
+// const corsOptions = {
+//   origin: "https://farmer-connect-world.vercel.app", // your frontend domain
+//   methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
+//   allowedHeaders: ["Content-Type", "Authorization"], // allowed headers
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
 const corsOptions = {
-  origin: "https://farmer-connect-world.vercel.app", // your frontend domain
-  methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
-  allowedHeaders: ["Content-Type", "Authorization"], // allowed headers
+  origin: "https://farmer-connect-world.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
   credentials: true,
-  optionsSuccessStatus: 200,
 };
-
+app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://farmer-connect-world.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Requested-With, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
+app.options("*", cors(corsOptions)); // preflight OPTIONS request
+app.use(express.urlencoded({ extended: true }));
 // it means if server running in anyport it can take resources from ui hosting port
 // but we need to give frontend(react) running host address here
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 // Handle preflight requests
-app.options("*", cors(corsOptions));
+// app.options("*", cors(corsOptions));
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header(
@@ -79,18 +100,18 @@ app.options("*", cors(corsOptions));
 //   );
 //   next();
 // });
-app.use((req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://farmer-connect-world.vercel.app"
-  );
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+//   next();
+// });
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
