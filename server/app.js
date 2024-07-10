@@ -47,22 +47,22 @@ app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 // express security
 // app.use(helmet());
-app.use(
-  helmet({
-    contentSecurityPolicy: {
-      directives: {
-        "default-src": ["'self'"],
-        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"], // Allow API calls
-      },
-    },
-    crossOriginResourcePolicy: { policy: "cross-origin" },
-    // Additional security headers
-    hsts: true,
-    xssFilter: true,
-    noSniff: true,
-    frameguard: { action: "deny" },
-  })
-);
+// app.use(
+//   helmet({
+//     contentSecurityPolicy: {
+//       directives: {
+//         "default-src": ["'self'"],
+//         "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"], // Allow API calls
+//       },
+//     },
+//     crossOriginResourcePolicy: { policy: "cross-origin" },
+//     // Additional security headers
+//     hsts: true,
+//     xssFilter: true,
+//     noSniff: true,
+//     frameguard: { action: "deny" },
+//   })
+// );
 // const corsOptions = {
 //   origin: "https://farmer-connect-world.vercel.app", // your frontend domain
 //   methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
