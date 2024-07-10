@@ -75,7 +75,7 @@ const handleConnection = async function (socket) {
 
 // Function to initialize chat namespace
 const initializeChatNamespace = function (io) {
-  const chatNamespace = io.of("/api/chat");
+  const chatNamespace = io.of("/chat");
 
   chatNamespace.use(authenticateSocket);
   chatNamespace.on("connection", handleConnection);

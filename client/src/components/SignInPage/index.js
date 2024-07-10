@@ -54,6 +54,7 @@ const SignInPage = () => {
       },
       body: JSON.stringify(userDetails),
     };
+
     const url = `${ApiUrl}/signin`;
     const fetchData = async () => {
       const response = await fetch(url, options);
