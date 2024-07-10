@@ -56,6 +56,11 @@ app.use(
       },
     },
     crossOriginResourcePolicy: { policy: "cross-origin" },
+    // Additional security headers
+    hsts: true,
+    xssFilter: true,
+    noSniff: true,
+    frameguard: { action: "deny" },
   })
 );
 // const corsOptions = {
