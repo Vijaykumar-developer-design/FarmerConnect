@@ -69,12 +69,26 @@ const corsOptions = {
 // it means if server running in anyport it can take resources from ui hosting port
 // but we need to give frontend(react) running host address here
 app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
+// Handle preflight requests
+// app.options("*", cors(corsOptions));
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
+pp.use((req, res, next) => {
+  res.header(
+    "Access-Control-Allow-Origin",
+    "https://farmer-connect-world.vercel.app"
+  );
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
   );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
   next();
 });
 // Configure CORS for Socket.IO
@@ -89,8 +103,7 @@ const io = socketIo(server, {
 // console.log("port===>>", process.env.PORT);
 // Middleware to parse URL-encoded data
 app.use(express.urlencoded({ extended: true }));
-// Handle preflight requests
-app.options("*", cors(corsOptions));
+
 // database connection address
 const uri = process.env.DATABSE_ADDRESS;
 // Connect to MongoDB
