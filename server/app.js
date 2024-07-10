@@ -88,15 +88,16 @@ const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 
-const corsOptions = {
-  origin: "https://farmer-connect-world.vercel.app",
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: "https://farmer-connect-world.vercel.app",
+//   methods: ["GET", "POST", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.use(cors());
 
 // Set CORS headers manually
 // app.use((req, res, next) => {
@@ -112,7 +113,7 @@ app.use(cors(corsOptions));
 //   res.setHeader("Access-Control-Allow-Credentials", "true");
 //   next();
 // });
-app.options("*", cors(corsOptions));
+app.options("*", cors());
 
 // Handle preflight requests
 // app.options("*", (req, res) => {
