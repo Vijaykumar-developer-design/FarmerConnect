@@ -8,8 +8,6 @@ const cors = require("cors");
 const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
-const upload = require("./middlewares/multerConfig");
-const { postImageUpload } = require("./middlewares/multerConfig");
 
 const app = express();
 //chat modules
@@ -18,29 +16,6 @@ const http = require("http");
 const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 
-const updateProfileHandler = require("./handlers/updateProfileHandler");
-const signUpHandler = require("./handlers/signUpHandler");
-const signInHandler = require("./handlers/signInHandler");
-const verifyAuthorization = require("./middlewares/authMiddleware");
-const forgotPasswordHandler = require("./handlers/forgotPasswordHandler");
-const userProfileHandler = require("./handlers/userProfileHandler");
-const deleteProfileHandler = require("./handlers/deleteProfileHandler");
-const likeUnlikePostHandler = require("./handlers/likeUnlikePostHandler");
-const likeDislikePostHandler = require("./handlers/likeDislikePostHandler");
-const getPostsHandler = require("./handlers/getPostsHandler");
-const deletePostHandler = require("./handlers/deletePostHandler");
-const deletePostFromProfileHandler = require("./handlers/deletePostFromProfileHandler");
-const getUserProfileHandler = require("./handlers/getUserProfileHandler");
-const updateUserProfileHandler = require("./handlers/updateUserProfileHandler");
-const deleteUsersChatboxHandler = require("./handlers/deleteUsersChatboxHandler");
-const uploadPostHandler = require("./handlers/uploadPostHandler");
-const {
-  handleConnection,
-  authenticateSocket,
-  initializeChatNamespace,
-} = require("./handlers/chatHandler");
-
-const getChatUsersHandler = require("./handlers/getChatUsersHandler");
 // Use the editProfileRoute middleware
 // telling to the express that json object included in api request
 app.use(express.json({ limit: "40mb" }));
@@ -179,7 +154,30 @@ const secretKey = process.env.SECRET_KEY;
 // );
 
 // };
+const { postImageUpload } = require("./middlewares/multerConfig");
+const updateProfileHandler = require("./handlers/updateProfileHandler");
+const signUpHandler = require("./handlers/signUpHandler");
+const signInHandler = require("./handlers/signInHandler");
+const verifyAuthorization = require("./middlewares/authMiddleware");
+const forgotPasswordHandler = require("./handlers/forgotPasswordHandler");
+const userProfileHandler = require("./handlers/userProfileHandler");
+const deleteProfileHandler = require("./handlers/deleteProfileHandler");
+const likeUnlikePostHandler = require("./handlers/likeUnlikePostHandler");
+const likeDislikePostHandler = require("./handlers/likeDislikePostHandler");
+const getPostsHandler = require("./handlers/getPostsHandler");
+const deletePostHandler = require("./handlers/deletePostHandler");
+const deletePostFromProfileHandler = require("./handlers/deletePostFromProfileHandler");
+const getUserProfileHandler = require("./handlers/getUserProfileHandler");
+const updateUserProfileHandler = require("./handlers/updateUserProfileHandler");
+const deleteUsersChatboxHandler = require("./handlers/deleteUsersChatboxHandler");
+const uploadPostHandler = require("./handlers/uploadPostHandler");
+const {
+  handleConnection,
+  authenticateSocket,
+  initializeChatNamespace,
+} = require("./handlers/chatHandler");
 
+const getChatUsersHandler = require("./handlers/getChatUsersHandler");
 // socket.ioChat chatting between two users
 
 // Initialize chat namespace
