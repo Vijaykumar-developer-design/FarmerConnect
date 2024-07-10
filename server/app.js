@@ -46,37 +46,37 @@ const getChatUsersHandler = require("./handlers/getChatUsersHandler");
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
 // express security
-app.use(helmet());
-// app.use(
-//   helmet({
-//     contentSecurityPolicy: {
-//       directives: {
-//         "default-src": ["'self'"],
-//         "img-src": ["'self'", "data:", "http://localhost:5000"], // Allow image source
-//         "connect-src": ["'self'", "http://localhost:3000"], // Allow API calls
-//       },
-//     },
-//     crossOriginResourcePolicy: { policy: "cross-origin" },
-//   })
-// );
+// app.use(helmet());
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "default-src": ["'self'"],
+        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"], // Allow API calls
+      },
+    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+  })
+);
+const corsOptions = {
+  origin: "https://farmer-connect-world.vercel.app", // your frontend domain
+  methods: ["GET", "POST", "PUT", "DELETE"], // allowed methods
+  allowedHeaders: ["Content-Type", "Authorization"], // allowed headers
+  credentials: true,
+  optionsSuccessStatus: 200,
+};
 
 // it means if server running in anyport it can take resources from ui hosting port
 // but we need to give frontend(react) running host address here
-app.use(
-  cors({
-    origin: "https://farmer-connect-world.vercel.app",
-    credentials: true,
-    optionsSuccessStatus: 200,
-  })
-);
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-});
+app.use(cors(corsOptions));
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Origin", "*");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Origin, X-Requested-With, Content-Type, Accept"
+//   );
+//   next();
+// });
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
@@ -89,6 +89,8 @@ const io = socketIo(server, {
 // console.log("port===>>", process.env.PORT);
 // Middleware to parse URL-encoded data
 app.use(express.urlencoded({ extended: true }));
+// Handle preflight requests
+app.options("*", cors(corsOptions));
 // database connection address
 const uri = process.env.DATABSE_ADDRESS || "mongodb://127.0.0.1:27017/farmers";
 // Connect to MongoDB
@@ -103,6 +105,7 @@ mongoose
   .catch((error) => {
     console.error("MongoDB connection error:", error);
   });
+
 const secretKey = process.env.SECRET_KEY;
 // Serve static files from the "uploads" directory
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
