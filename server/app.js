@@ -38,7 +38,7 @@ app.use(
   })
 );
 const corsOptions = {
-  origin: "https://create-your-digital-menu-card.vercel.app",
+  origin: "https://farmer-connect-world.vercel.app",
   methods: ["GET", "POST", "OPTIONS"],
   allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
   credentials: true,
@@ -47,7 +47,7 @@ app.use(cors(corsOptions));
 app.use((req, res, next) => {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://create-your-digital-menu-card.vercel.app"
+    "https://farmer-connect-world.vercel.app"
   );
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
   res.setHeader(
