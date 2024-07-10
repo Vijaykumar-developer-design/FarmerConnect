@@ -132,17 +132,25 @@ app.options("*", (req, res) => {
 const io = socketIo(server, {
   cors: {
     origin: "https://farmer-connect-world.vercel.app",
-    methods: ["GET", "POST"],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
     credentials: true,
   },
 });
-io.origins((origin, callback) => {
-  if (origin === "https://farmer-connect-world.vercel.app") {
-    callback(null, true);
-  } else {
-    callback("Origin not allowed", false);
-  }
-});
+// const io = socketIo(server, {
+//   cors: {
+//     origin: "https://farmer-connect-world.vercel.app",
+//     methods: ["GET", "POST"],
+//     credentials: true,
+//   },
+// });
+// io.origins((origin, callback) => {
+//   if (origin === "https://farmer-connect-world.vercel.app") {
+//     callback(null, true);
+//   } else {
+//     callback("Origin not allowed", false);
+//   }
+// });
 // Middleware to handle JSON and URL-encoded data
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
