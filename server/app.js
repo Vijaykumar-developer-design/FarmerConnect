@@ -79,7 +79,10 @@ app.use((req, res, next) => {
     "Access-Control-Allow-Origin",
     "https://farmer-connect-world.vercel.app"
   );
-  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, DELETE"
+  );
   res.setHeader(
     "Access-Control-Allow-Headers",
     "Content-Type, X-Requested-With, Authorization"
@@ -87,7 +90,23 @@ app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Credentials", "true");
   next();
 });
-app.options("*", cors(corsOptions)); // preflight OPTIONS request
+
+app.options("*", (req, res) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://farmer-connect-world.vercel.app"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, DELETE"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Requested-With, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.sendStatus(200);
+}); // preflight OPTIONS request
 app.use(express.urlencoded({ extended: true }));
 // it means if server running in anyport it can take resources from ui hosting port
 // but we need to give frontend(react) running host address here
@@ -155,6 +174,21 @@ const secretKey = process.env.SECRET_KEY;
 // );
 
 // };
+
+// socket.ioChat chatting between two users
+
+// Initialize chat namespace
+
+// Middleware to authenticate socket connections
+
+io.use(authenticateSocket);
+
+// Handle socket connections
+io.on("connection", handleConnection);
+
+// Initialize chat namespace (/chat) with custom handling
+initializeChatNamespace(io);
+
 app.post(
   "/api/editprofile",
   verifyAuthorization,
@@ -171,20 +205,6 @@ app.post("/api/signup", signUpHandler);
 
 // forgot password API
 app.post("/api/forgot", forgotPasswordHandler);
-
-// socket.ioChat chatting between two users
-
-// Initialize chat namespace
-
-// Middleware to authenticate socket connections
-
-io.use(authenticateSocket);
-
-// Handle socket connections
-io.on("connection", handleConnection);
-
-// Initialize chat namespace (/chat) with custom handling
-initializeChatNamespace(io);
 
 app.get("/api/profile/:userId", verifyAuthorization, userProfileHandler);
 
