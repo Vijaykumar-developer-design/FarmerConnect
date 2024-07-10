@@ -70,7 +70,7 @@ const corsOptions = {
 // but we need to give frontend(react) running host address here
 app.use(cors(corsOptions));
 // Handle preflight requests
-// app.options("*", cors(corsOptions));
+app.options("*", cors(corsOptions));
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Origin", "*");
 //   res.header(
@@ -79,7 +79,7 @@ app.use(cors(corsOptions));
 //   );
 //   next();
 // });
-pp.use((req, res, next) => {
+app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
     "https://farmer-connect-world.vercel.app"
