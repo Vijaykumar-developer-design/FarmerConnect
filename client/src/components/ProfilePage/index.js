@@ -29,10 +29,10 @@ const Profile = () => {
   const onLogout = () => {
     Cookies.remove("jwt_token");
     localStorage.clear();
-    history.replace("/api/signin");
+    history.replace("/signin");
   };
   const goToEditProfile = () => {
-    history.replace("/api/editprofile");
+    history.replace("/editprofile");
   };
 
   const fetchData = useCallback(async () => {
@@ -165,7 +165,7 @@ const Profile = () => {
         setApiState(apiStatus.deleteProfile);
         setTimeout(() => {
           // Redirect to login page
-          history.replace("/api/signin");
+          history.replace("/signin");
         }, 3000);
       } else {
         console.log("error");
@@ -213,7 +213,7 @@ const Profile = () => {
               <Link
                 key={each.userId}
                 className="profile-follower-link"
-                to={`/api/userprofile/${each.userId}`}
+                to={`/userprofile/${each.userId}`}
               >
                 <div className="profile-follower-parent" key={each.userId}>
                   {each.profileImage ? (
@@ -278,7 +278,7 @@ const Profile = () => {
       <>
         <div className="profile-head">
           <div className="profile-text">
-            <Link to={`/api/home/${userId}`} className="profile-pic">
+            <Link to={`/home/${userId}`} className="profile-pic">
               {profileImage ? (
                 <img className="profile-image" src={profileImage} alt="" />
               ) : (

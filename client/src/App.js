@@ -19,34 +19,22 @@ const App = () => {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <Route path="/api/signup" component={SignUpPage} />
-          <Route exact path="/api/signin" component={SignInPage} />
-          <Route exact path="/api/forgot" component={ForgotPage} />
-          <ProtectedRoute exact path="/api/home/:id" component={HomePage} />
+          <Route path="/signup" component={SignUpPage} />
+          <Route exact path="/signin" component={SignInPage} />
+          <Route exact path="/forgot" component={ForgotPage} />
+          <ProtectedRoute exact path="/home/:id" component={HomePage} />
+          <ProtectedRoute exact path="/userschatbox" component={UsersChat} />
+          <ProtectedRoute exact path="/profile/:userId" component={Profile} />
+          <ProtectedRoute exact path="/editprofile" component={EditProfile} />
+          <ProtectedRoute exact path="/uploadpost" component={UploadPost} />
           <ProtectedRoute
             exact
-            path="/api/userschatbox"
-            component={UsersChat}
-          />
-          <ProtectedRoute
-            exact
-            path="/api/profile/:userId"
-            component={Profile}
-          />
-          <ProtectedRoute
-            exact
-            path="/api/editprofile"
-            component={EditProfile}
-          />
-          <ProtectedRoute exact path="/api/uploadpost" component={UploadPost} />
-          <ProtectedRoute
-            exact
-            path="/api/userprofile/:userId"
+            path="/userprofile/:userId"
             component={UserProfile}
           />
-          <ProtectedRoute exact path="/api/chat" component={ChatPage} />
+          <ProtectedRoute exact path="/chat" component={ChatPage} />
 
-          <Redirect to="/api/signin" />
+          <Redirect to="/signin" />
         </Switch>
       </BrowserRouter>
     </Provider>

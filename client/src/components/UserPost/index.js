@@ -72,8 +72,8 @@ const UserPost = (props) => {
             <Link
               to={
                 postDetails.userId === activeUser
-                  ? `/api/profile/${activeUser}`
-                  : `/api/userprofile/${postDetails.userId}`
+                  ? `/profile/${activeUser}`
+                  : `/userprofile/${postDetails.userId}`
               }
             >
               <img src={userPic} alt={userName} className="post-pic" />

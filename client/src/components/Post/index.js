@@ -22,7 +22,7 @@ const UploadPost = () => {
 
   const fileInputRef = React.createRef();
   const redirectToHome = () => {
-    history.replace(`/api/home/${userId}`);
+    history.replace(`/home/${userId}`);
   };
 
   const handleFileChange = async (e) => {
@@ -96,7 +96,7 @@ const UploadPost = () => {
         </div>
       )}
       <div>
-        <Link className="backto-home" to={`/api/home/${userId}`}>
+        <Link className="backto-home" to={`/home/${userId}`}>
           <LuLogOut className="post-backward" />
         </Link>
       </div>

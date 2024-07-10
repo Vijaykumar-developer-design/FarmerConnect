@@ -1,11 +1,7 @@
 const mongoose = require("mongoose");
-// const multer = require("multer");
 const express = require("express");
-const bcrypt = require("bcrypt");
 const helmet = require("helmet");
-const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const path = require("path");
 const bodyParser = require("body-parser");
 require("dotenv").config();
 
@@ -13,13 +9,56 @@ const app = express();
 //chat modules
 const socketIo = require("socket.io");
 const http = require("http");
-const port = process.env.PORT || 5000;
 const server = http.createServer(app);
 
 // Use the editProfileRoute middleware
 // telling to the express that json object included in api request
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "default-src": ["'self'"],
+        "img-src": [
+          "'self'",
+          "data:",
+          "https://farmer-connect-server.vercel.app/api",
+        ], // Allow image source
+        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"], // Allow API calls
+      },
+    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    // Additional security headers
+    hsts: true,
+    xssFilter: true,
+    noSniff: true,
+    frameguard: { action: "deny" },
+  })
+);
+const corsOptions = {
+  origin: "https://create-your-digital-menu-card.vercel.app",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
+app.use((req, res, next) => {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://create-your-digital-menu-card.vercel.app"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Requested-With, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  next();
+});
+app.options("*", cors(corsOptions)); // preflight OPTIONS request
+app.use(express.urlencoded({ extended: true }));
 // express security
 // app.use(helmet());
 // app.use(
@@ -45,49 +84,49 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //   credentials: true,
 //   optionsSuccessStatus: 200,
 // };
-const corsOptions = {
-  origin: "https://farmer-connect-world.vercel.app",
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  credentials: true,
-  optionsSuccessStatus: 200,
-};
+// const corsOptions = {
+//   origin: "https://farmer-connect-world.vercel.app",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
 
-app.use(cors(corsOptions));
-app.use((req, res, next) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://farmer-connect-world.vercel.app"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, X-Requested-With, Authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// app.use(cors(corsOptions));
+// app.use((req, res, next) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, DELETE"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 
-app.options("*", (req, res) => {
-  res.setHeader(
-    "Access-Control-Allow-Origin",
-    "https://farmer-connect-world.vercel.app"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Methods",
-    "GET, POST, OPTIONS, PUT, DELETE"
-  );
-  res.setHeader(
-    "Access-Control-Allow-Headers",
-    "Content-Type, X-Requested-With, Authorization"
-  );
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.sendStatus(200);
-}); // preflight OPTIONS request
-app.use(express.urlencoded({ extended: true }));
+// app.options("*", (req, res) => {
+//   res.setHeader(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Methods",
+//     "GET, POST, OPTIONS, PUT, DELETE"
+//   );
+//   res.setHeader(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.setHeader("Access-Control-Allow-Credentials", "true");
+//   res.sendStatus(200);
+// }); // preflight OPTIONS request
+// app.use(express.urlencoded({ extended: true }));
 // it means if server running in anyport it can take resources from ui hosting port
 // but we need to give frontend(react) running host address here
 // app.use(cors(corsOptions));
@@ -124,8 +163,7 @@ const io = socketIo(server, {
 });
 // console.log("port===>>", process.env.PORT);
 // Middleware to parse URL-encoded data
-app.use(express.urlencoded({ extended: true }));
-
+const port = process.env.PORT || 5000;
 // database connection address
 const uri = process.env.DATABSE_ADDRESS;
 // Connect to MongoDB
@@ -141,7 +179,6 @@ mongoose
     console.error("MongoDB connection error:", error);
   });
 
-const secretKey = process.env.SECRET_KEY;
 // Serve static files from the "uploads" directory
 // app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 // app.use(

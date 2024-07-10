@@ -85,7 +85,7 @@ const EditProfile = () => {
   // saving profile
   const redirectToProfile = (image) => {
     // dispatch(updateMobileNumber(formData.mobile));
-    history.replace(`/api/profile/${userId}`);
+    history.replace(`/profile/${userId}`);
     dispatch(updateUserProfile(image));
   };
 

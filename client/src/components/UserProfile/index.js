@@ -195,8 +195,8 @@ const UserProfile = () => {
                 className="follower-link"
                 to={
                   each.userId === activeUser
-                    ? `/api/profile/${activeUser}`
-                    : `/api/userprofile/${each.userId}`
+                    ? `/profile/${activeUser}`
+                    : `/userprofile/${each.userId}`
                 }
               >
                 <div className="follower-parent">
@@ -286,7 +286,7 @@ const UserProfile = () => {
           >
             Followers
           </button>
-          <Link to="/api/chat">
+          <Link to="/chat">
             <button onClick={handleMessage} className="change-color">
               Message
             </button>

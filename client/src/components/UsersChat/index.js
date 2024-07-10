@@ -67,7 +67,7 @@ const UsersChat = () => {
       userId,
     };
     dispatch(setChatUserProfile(newObj));
-    history.push("/api/chat");
+    history.push("/chat");
   };
 
   const fetchApi = async (userId) => {

@@ -48,7 +48,7 @@ const SignUpPage = () => {
   };
 
   const changePath = () => {
-    history.replace("/api/signin");
+    history.replace("/signin");
   };
   // checking whether mobile number contains only digits or not
   function isNumeric(str) {

@@ -61,7 +61,7 @@ const DetailedPost = () => {
       //   console.log("data=>", data);
       if (response.ok) {
         // setPostDetails(data.post);
-        history.replace("/api/home");
+        history.replace("/home");
       } else {
         console.log("Error while fetching data", data.error);
       }

@@ -12,7 +12,7 @@ const ForgotPage = () => {
   const [error, setError] = useState("");
   const history = useHistory();
   const redirectToSignIn = () => {
-    history.replace("/api/signin");
+    history.replace("/signin");
   };
   function isNumeric(str) {
     // Regular expression to match only digits

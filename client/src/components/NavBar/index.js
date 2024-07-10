@@ -15,11 +15,11 @@ const Navbar = (props) => {
     getUserSearch(e.target.value);
   };
   const handleChat = () => {
-    history.push("/api/userschatbox");
+    history.push("/userschatbox");
   };
   return (
     <nav className="nav-bg">
-      <Link className="nav-profile-link" to={`/api/profile/${userId}`}>
+      <Link className="nav-profile-link" to={`/profile/${userId}`}>
         <div className="nav-profile">
           {profilePicture ? (
             <img
@@ -43,7 +43,7 @@ const Navbar = (props) => {
           type="text"
           placeholder="Search profile here..."
         />
-        <Link className="nav-profile-link" to="/api/uploadpost">
+        <Link className="nav-profile-link" to="/uploadpost">
           <FaSquarePlus className="add-post-sm" />
           <button className="post-btn" type="button">
             {" "}

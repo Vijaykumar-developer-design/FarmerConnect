@@ -18,7 +18,7 @@ const SignInPage = () => {
     // saving token for authentication
     Cookies.set("jwt_token", data.jwt_token, { expires: 10 });
     let id = data.userId;
-    history.replace(`/api/home/${id}`);
+    history.replace(`/home/${id}`);
     dispatch(setUserId(data.userId));
     dispatch(setUserProfile(data.userProfile));
   };
@@ -30,10 +30,10 @@ const SignInPage = () => {
   };
 
   const changePath = () => {
-    history.replace("/api/signup");
+    history.replace("/signup");
   };
   const changeForgot = () => {
-    history.replace("/api/forgot");
+    history.replace("/forgot");
   };
   function isNumeric(str) {
     // Regular expression to match only digits
