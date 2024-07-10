@@ -96,7 +96,7 @@ const corsOptions = {
   optionsSuccessStatus: 200,
 };
 
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
 
 // Set CORS headers manually
 app.use((req, res, next) => {
