@@ -1,1 +1,2 @@
-export const ApiUrl = "https://farmer-connect-server.vercel.app/api";
+export const ApiUrl =
+  "https://farmer-connect-server-application.vercel.app/api";

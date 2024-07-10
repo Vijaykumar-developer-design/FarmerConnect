@@ -59,7 +59,7 @@ app.use(
         "img-src": [
           "'self'",
           "data:",
-          "https://farmer-connect-server.vercel.app/api",
+          "https://farmer-connect-server-application.vercel.app/api",
         ],
         "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
       },
