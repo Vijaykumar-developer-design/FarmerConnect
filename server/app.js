@@ -129,14 +129,15 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 // Configure CORS for Socket.IO
-const io = socketIo(server, {
-  cors: {
-    origin: corsOptions.origin,
-    methods: corsOptions.methods,
-    allowedHeaders: corsOptions.allowedHeaders,
-    credentials: corsOptions.credentials,
-  },
-});
+// const io = socketIo(server, {
+//   cors: {
+//     origin: corsOptions.origin,
+//     methods: corsOptions.methods,
+//     allowedHeaders: corsOptions.allowedHeaders,
+//     credentials: corsOptions.credentials,
+//   },
+// });
+const io = socketIo(server);
 io.origins(corsOptions.origin);
 // const io = socketIo(server, {
 //   cors: {
