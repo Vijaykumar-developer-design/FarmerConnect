@@ -26,12 +26,15 @@ const ChatPage = () => {
   const [socket, setSocket] = useState(null);
   useEffect(() => {
     // Create socket connection when the component mounts
-    const socketInstance = io(`${ApiUrl}/chat`, {
-      query: { receiverId: userId, senderId: senderId },
-      auth: {
-        token: jwt_token,
-      }, // Pass userId as a query parameter
-    });
+    const socketInstance = io(
+      "https://farmer-connect-server-application.vercel.app/chat",
+      {
+        query: { receiverId: userId, senderId: senderId },
+        auth: {
+          token: jwt_token,
+        }, // Pass userId as a query parameter
+      }
+    );
 
     // Save the socket instance in state
     setSocket(socketInstance);
