@@ -138,12 +138,7 @@ const io = socketIo(server, {
     optionsSuccessStatus: 200,
   },
 });
-io.origins((origin, callback) => {
-  if (origin !== "https://farmer-connect-world.vercel.app") {
-    return callback("Origin not allowed", false);
-  }
-  callback(null, true);
-});
+
 // const io = socketIo(server, {
 //   cors: {
 //     origin: "https://farmer-connect-world.vercel.app",
