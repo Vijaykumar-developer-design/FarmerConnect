@@ -27,8 +27,9 @@ const ChatPage = () => {
   useEffect(() => {
     // Create socket connection when the component mounts
     const socketInstance = io(
-      "https://farmer-connect-server-application.vercel.app/chat",
+      "https://farmer-connect-server-application.vercel.app",
       {
+        path: "/chat",
         query: { receiverId: userId, senderId: senderId },
         auth: {
           token: jwt_token,
