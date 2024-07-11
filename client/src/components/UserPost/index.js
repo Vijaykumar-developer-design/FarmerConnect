@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FcLike } from "react-icons/fc";
 import { FaRegHeart } from "react-icons/fa6";
+import { IoPersonCircle } from "react-icons/io5";
 import "./index.css";
 
 const UserPost = (props) => {
@@ -76,7 +77,11 @@ const UserPost = (props) => {
                   : `/userprofile/${postDetails.userId}`
               }
             >
-              <img src={userPic} alt={userName} className="post-pic" />
+              {userPic ? (
+                <img src={userPic} alt={userName} className="post-pic" />
+              ) : (
+                <IoPersonCircle fontSize={50} />
+              )}
             </Link>
           </div>
           <div className="post-name-state">
