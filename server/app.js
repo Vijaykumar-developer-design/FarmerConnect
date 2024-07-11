@@ -129,15 +129,15 @@ app.options("*", (req, res) => {
   res.sendStatus(200);
 });
 // Configure CORS for Socket.IO
-// const io = socketIo(server, {
-//   cors: {
-//     origin: corsOptions.origin,
-//     methods: corsOptions.methods,
-//     allowedHeaders: corsOptions.allowedHeaders,
-//     credentials: corsOptions.credentials,
-//   },
-// });
-const io = socketIo(server);
+const io = socketIo(server, {
+  cors: {
+    origin: corsOptions.origin,
+    methods: corsOptions.methods,
+    allowedHeaders: corsOptions.allowedHeaders,
+    credentials: corsOptions.credentials,
+  },
+});
+
 io.origins(corsOptions.origin);
 // const io = socketIo(server, {
 //   cors: {
@@ -250,4 +250,4 @@ server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-module.exports = app;
+module.exports = server;
