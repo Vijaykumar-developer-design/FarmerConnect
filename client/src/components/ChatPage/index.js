@@ -26,16 +26,13 @@ const ChatPage = () => {
   const [socket, setSocket] = useState(null);
   useEffect(() => {
     // Create socket connection when the component mounts
-    const socketInstance = io(
-      "https://farmer-connect-server-application.vercel.app",
-      {
-        path: "/chat",
-        query: { receiverId: userId, senderId: senderId },
-        auth: {
-          token: jwt_token,
-        }, // Pass userId as a query parameter
-      }
-    );
+    const socketInstance = io(ApiUrl, {
+      path: "/chat",
+      query: { receiverId: userId, senderId: senderId },
+      auth: {
+        token: jwt_token,
+      }, // Pass userId as a query parameter
+    });
 
     // Save the socket instance in state
     setSocket(socketInstance);
@@ -135,7 +132,7 @@ const ChatPage = () => {
       <nav className="chat-navpage">
         <div className="chat-profile-navpage">
           {profileImage === "" ? (
-            <IoPersonCircle className="chat-non-profile" />
+            <IoPersonCircle fontSize={40} />
           ) : (
             <img src={profileImage} alt="" className="chat-profile-pic" />
           )}
