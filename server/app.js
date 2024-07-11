@@ -191,7 +191,6 @@ const {
 } = require("./handlers/chatHandler");
 
 const getChatUsersHandler = require("./handlers/getChatUsersHandler");
-const { appendFileSync } = require("fs");
 
 // Middleware to authenticate socket connections
 io.use(authenticateSocket);
