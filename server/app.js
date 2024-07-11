@@ -140,13 +140,14 @@ app.options(corsOptions.origin, (req, res) => {
 // });
 const io = socketIo(server, {
   cors: {
-    origin: "*",
+    origin: "https://farmer-connect-world.vercel.app",
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
     handlePreflightRequest: (req, res) => {
       res.writeHead(200, {
-        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Origin":
+          "https://farmer-connect-world.vercel.app",
         "Access-Control-Allow-Methods": "GET, POST",
         "Access-Control-Allow-Headers":
           "Content-Type, Authorization, X-Requested-With",
@@ -265,18 +266,8 @@ app.delete("/api/userschatbox", verifyAuthorization, deleteUsersChatboxHandler);
 
 // Start server
 const port = process.env.PORT || 5000;
-// server.listen(port, () => {
-//   console.log(`Server is running on port ${port}`);
-// });
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
-// module.exports = server;
-module.exports = {
-  server,
-  app,
-  io,
-  listen: () => {
-    server.listen(process.env.PORT || 5000, () => {
-      console.log(`Server started on port ${process.env.PORT || 5000}`);
-    });
-  },
-};
+module.exports = { app, server };
