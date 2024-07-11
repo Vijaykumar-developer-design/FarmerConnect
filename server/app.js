@@ -131,13 +131,19 @@ app.options(corsOptions.origin, (req, res) => {
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
-    origin: corsOptions.origin,
-    methods: corsOptions.methods,
-    allowedHeaders: corsOptions.allowedHeaders,
-    credentials: corsOptions.credentials,
+    origin: "https://farmer-connect-world.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+    credentials: true,
+    optionsSuccessStatus: 200,
   },
 });
-
+io.origins((origin, callback) => {
+  if (origin !== "https://farmer-connect-world.vercel.app") {
+    return callback("Origin not allowed", false);
+  }
+  callback(null, true);
+});
 // const io = socketIo(server, {
 //   cors: {
 //     origin: "https://farmer-connect-world.vercel.app",
