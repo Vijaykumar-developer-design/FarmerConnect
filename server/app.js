@@ -129,16 +129,33 @@ app.options(corsOptions.origin, (req, res) => {
   res.sendStatus(200);
 });
 // Configure CORS for Socket.IO
+// const io = socketIo(server, {
+//   cors: {
+//     origin: "https://farmer-connect-world.vercel.app",
+//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//     allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+//     credentials: true,
+//     optionsSuccessStatus: 200,
+//   },
+// });
 const io = socketIo(server, {
   cors: {
-    origin: "https://farmer-connect-world.vercel.app",
-    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+    origin: "*",
+    methods: ["GET", "POST"],
+    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
-    optionsSuccessStatus: 200,
+    handlePreflightRequest: (req, res) => {
+      res.writeHead(200, {
+        "Access-Control-Allow-Origin": "*",
+        "Access-Control-Allow-Methods": "GET, POST",
+        "Access-Control-Allow-Headers":
+          "Content-Type, Authorization, my-custom-header",
+        "Access-Control-Allow-Credentials": true,
+      });
+      res.end();
+    },
   },
 });
-
 // const io = socketIo(server, {
 //   cors: {
 //     origin: "https://farmer-connect-world.vercel.app",
