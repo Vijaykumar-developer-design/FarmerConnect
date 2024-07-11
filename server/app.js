@@ -78,6 +78,7 @@
 //   next();
 // });
 const mongoose = require("mongoose");
+const helmet = require("helmet");
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -88,6 +89,21 @@ const http = require("http");
 const socketIo = require("socket.io");
 const server = http.createServer(app);
 
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        "default-src": ["'self'"],
+        "connect-src": ["'self'", "https://farmer-connect-world.vercel.app"],
+      },
+    },
+    crossOriginResourcePolicy: { policy: "cross-origin" },
+    hsts: true,
+    xssFilter: true,
+    noSniff: true,
+    frameguard: { action: "deny" },
+  })
+);
 const corsOptions = {
   origin: "https://farmer-connect-world.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
@@ -232,7 +248,7 @@ app.delete("/api/userschatbox", verifyAuthorization, deleteUsersChatboxHandler);
 
 // Start server
 const port = process.env.PORT || 5000;
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
