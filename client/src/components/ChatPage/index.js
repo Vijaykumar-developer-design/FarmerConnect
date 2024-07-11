@@ -31,6 +31,7 @@ const ChatPage = () => {
       auth: {
         token: jwt_token,
       }, // Pass userId as a query parameter
+      transports: ["websocket"],
     });
 
     // Save the socket instance in state
