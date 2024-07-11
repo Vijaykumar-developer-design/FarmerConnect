@@ -234,7 +234,7 @@ app.post(
   postImageUpload.single("file"),
   updateProfileHandler
 );
-app.post("/api/signin", signInHandler);
+app.post("/api/signin", cors(), signInHandler);
 app.post("/api/signup", signUpHandler);
 app.post("/api/forgot", forgotPasswordHandler);
 app.get("/api/profile/:userId", verifyAuthorization, userProfileHandler);
