@@ -191,6 +191,7 @@ const {
 } = require("./handlers/chatHandler");
 
 const getChatUsersHandler = require("./handlers/getChatUsersHandler");
+const { appendFileSync } = require("fs");
 
 // Middleware to authenticate socket connections
 io.use(authenticateSocket);
@@ -244,8 +245,8 @@ app.delete("/api/userschatbox", verifyAuthorization, deleteUsersChatboxHandler);
 
 // Start server
 const port = process.env.PORT || 5000;
-server.listen(port, () => {
+appendFileSync.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-module.exports = server;
+module.exports = app;
