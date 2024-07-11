@@ -129,48 +129,16 @@ app.options(corsOptions.origin, (req, res) => {
   res.sendStatus(200);
 });
 // Configure CORS for Socket.IO
-// const io = socketIo(server, {
-//   cors: {
-//     origin: "https://farmer-connect-world.vercel.app",
-//     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-//     allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
-//     credentials: true,
-//     optionsSuccessStatus: 200,
-//   },
-// });
 const io = socketIo(server, {
   cors: {
+    path: "/chat",
     origin: "https://farmer-connect-world.vercel.app",
     methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type", "Authorization", "X-Requested-With"],
     credentials: true,
-    handlePreflightRequest: (req, res) => {
-      res.writeHead(200, {
-        "Access-Control-Allow-Origin":
-          "https://farmer-connect-world.vercel.app",
-        "Access-Control-Allow-Methods": "GET, POST",
-        "Access-Control-Allow-Headers":
-          "Content-Type, Authorization, X-Requested-With",
-        "Access-Control-Allow-Credentials": true,
-      });
-      res.end();
-    },
+    allowedHeaders: corsOptions.allowedHeaders,
   },
 });
-// const io = socketIo(server, {
-//   cors: {
-//     origin: "https://farmer-connect-world.vercel.app",
-//     methods: ["GET", "POST"],
-//     credentials: true,
-//   },
-// });
-// io.origins((origin, callback) => {
-//   if (origin === "https://farmer-connect-world.vercel.app") {
-//     callback(null, true);
-//   } else {
-//     callback("Origin not allowed", false);
-//   }
-// });
+
 server.use(cors(corsOptions));
 
 // Middleware to handle JSON and URL-encoded data
@@ -270,4 +238,4 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-module.exports = { app, server };
+module.exports = app;
