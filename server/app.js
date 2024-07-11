@@ -137,6 +137,7 @@ const io = socketIo(server, {
     credentials: corsOptions.credentials,
   },
 });
+io.origins(corsOptions.origin);
 // const io = socketIo(server, {
 //   cors: {
 //     origin: "https://farmer-connect-world.vercel.app",
