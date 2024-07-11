@@ -139,8 +139,6 @@ const io = socketIo(server, {
   },
 });
 
-server.use(cors(corsOptions));
-
 // Middleware to handle JSON and URL-encoded data
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
