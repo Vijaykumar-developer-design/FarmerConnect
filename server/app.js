@@ -153,6 +153,8 @@ const io = socketIo(server, {
 //     callback("Origin not allowed", false);
 //   }
 // });
+server.use(cors(corsOptions));
+
 // Middleware to handle JSON and URL-encoded data
 app.use(express.json({ limit: "40mb" }));
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -250,4 +252,4 @@ server.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-module.exports = app;
+module.exports = server;
