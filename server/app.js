@@ -115,7 +115,7 @@ app.use(cors(corsOptions));
 // app.options("*", cors());
 
 // Handle preflight requests explicitly
-app.options("*", (req, res) => {
+app.options(corsOptions.origin, (req, res) => {
   res.header(
     "Access-Control-Allow-Origin",
     "https://farmer-connect-world.vercel.app"
@@ -138,7 +138,6 @@ const io = socketIo(server, {
   },
 });
 
-io.origins(corsOptions.origin);
 // const io = socketIo(server, {
 //   cors: {
 //     origin: "https://farmer-connect-world.vercel.app",
