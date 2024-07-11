@@ -34,7 +34,6 @@ const ChatPage = () => {
         auth: {
           token: jwt_token,
         }, // Pass userId as a query parameter
-        transports: ["websocket"],
       }
     );
 
