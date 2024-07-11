@@ -149,7 +149,7 @@ const io = socketIo(server, {
         "Access-Control-Allow-Origin": "*",
         "Access-Control-Allow-Methods": "GET, POST",
         "Access-Control-Allow-Headers":
-          "Content-Type, Authorization, my-custom-header",
+          "Content-Type, Authorization, X-Requested-With",
         "Access-Control-Allow-Credentials": true,
       });
       res.end();
