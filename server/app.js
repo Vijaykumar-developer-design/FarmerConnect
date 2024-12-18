@@ -179,6 +179,7 @@ mongoose
 
 // Import handlers and middlewares
 const { postImageUpload } = require("./middlewares/multerConfig");
+const corsMiddleware = require("./middlewares/corsMiddleware");
 const updateProfileHandler = require("./handlers/updateProfileHandler");
 const signUpHandler = require("./handlers/signUpHandler");
 const signInHandler = require("./handlers/signInHandler");
