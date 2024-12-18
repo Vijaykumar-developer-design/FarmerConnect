@@ -59,17 +59,22 @@ const UserProfile = () => {
   }, [userId]);
 
   useEffect(() => {
-    if (!effectRan.current) {
-      console.log("userId from URL:", userId);
-      // console.log("Effect applied - only on the FIRST mount");
-      fetchData(); // Fetch data only on the first mount
-      effectRan.current = false;
-    }
-    // unmounting of the component
-    return () => {
-      effectRan.current = false;
-    };
+    console.log("userId from URL:", userId); // Log the userId when the component mounts or userId changes
+    fetchData(); // Fetch data whenever userId changes
   }, [userId, fetchData]);
+
+  // useEffect(() => {
+  //   if (!effectRan.current) {
+  //     console.log("userId from URL:", userId);
+  //     // console.log("Effect applied - only on the FIRST mount");
+  //     fetchData(); // Fetch data only on the first mount
+  //     effectRan.current = false;
+  //   }
+  //   // unmounting of the component
+  //   return () => {
+  //     effectRan.current = false;
+  //   };
+  // }, [userId, fetchData]);
 
   const {
     username,
