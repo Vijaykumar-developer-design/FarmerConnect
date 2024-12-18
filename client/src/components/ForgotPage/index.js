@@ -14,13 +14,10 @@ const ForgotPage = () => {
   const redirectToSignIn = () => {
     history.replace("/signin");
   };
-  function isNumeric(str) {
-    // Regular expression to match only digits
-    const regex = /^\d+$/;
 
-    // Test the string against the regular expression
-    return regex.test(str);
-  }
+  // Helper function to check if a string contains only numbers
+  const isNumeric = (str) => /^\d+$/.test(str);
+
   const submitForm = (e) => {
     e.preventDefault();
     const userDetails = { mobile, password };
@@ -69,7 +66,12 @@ const ForgotPage = () => {
   const updatePassword = (e) => {
     setPassword(e.target.value);
   };
-
+  // Handle the Enter key press
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      submitForm(e);
+    }
+  };
   return (
     <div className="sign-up-success-bg-forgot">
       <form onSubmit={submitForm} className="form-success-up-forgot">
@@ -103,6 +105,7 @@ const ForgotPage = () => {
           <input
             required
             onChange={updatePassword}
+            onKeyDown={handleKeyPress}
             value={password}
             placeholder="Enter new password...."
             className="form-success-input-up-forgot"

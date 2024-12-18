@@ -83,9 +83,9 @@ const SignInPage = () => {
     } else {
       setError("Mobile number should contain only numbers");
     }
-
-    // Handle the Enter key press
   };
+
+  // Handle the Enter key press
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       submitForm(e);

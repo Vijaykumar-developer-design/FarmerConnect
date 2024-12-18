@@ -51,13 +51,8 @@ const SignUpPage = () => {
     history.replace("/signin");
   };
   // checking whether mobile number contains only digits or not
-  function isNumeric(str) {
-    // Regular expression to match only digits
-    const regex = /^\d+$/;
-
-    // Test the string against the regular expression
-    return regex.test(str);
-  }
+  // Helper function to check if a string contains only numbers
+  const isNumeric = (str) => /^\d+$/.test(str);
 
   const submitForm = (e) => {
     e.preventDefault();
@@ -137,6 +132,13 @@ const SignUpPage = () => {
       setError("Mobile number should contain only numbers");
     }
   };
+
+  // Handle the Enter key press
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      submitForm(e);
+    }
+  };
   const { mobile, password, username } = formData;
   return (
     <div className="sign-up-success-bg">
@@ -181,6 +183,7 @@ const SignUpPage = () => {
           <input
             required
             onChange={updatePassword}
+            onKeyDown={handleKeyPress}
             value={password}
             placeholder="Enter password...."
             className="form-success-input-up"
