@@ -113,7 +113,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
-
+// Handle preflight requests globally
+app.options("*", cors(corsOptions)); // Handles all preflight requests
 // Set CORS headers manually
 // app.use((req, res, next) => {
 //   res.setHeader(
@@ -131,19 +132,19 @@ app.use(cors(corsOptions));
 // app.options("*", cors());
 
 // Handle preflight requests explicitly
-app.options(corsOptions.origin, (req, res) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://farmer-connect-world.vercel.app"
-  );
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Content-Type, X-Requested-With, Authorization"
-  );
-  res.header("Access-Control-Allow-Credentials", "true");
-  res.sendStatus(200);
-});
+// app.options(corsOptions.origin, (req, res) => {
+//   res.header(
+//     "Access-Control-Allow-Origin",
+//     "https://farmer-connect-world.vercel.app"
+//   );
+//   res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
+//   res.header(
+//     "Access-Control-Allow-Headers",
+//     "Content-Type, X-Requested-With, Authorization"
+//   );
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   res.sendStatus(200);
+// });
 // Configure CORS for Socket.IO
 const io = socketIo(server, {
   cors: {
