@@ -34,6 +34,7 @@ const UserProfile = () => {
       headers: {
         Authorization: `Bearer ${jwt_token}`,
         Accept: "application/json",
+        "Cache-Control": "no-cache",
       },
     };
     try {
