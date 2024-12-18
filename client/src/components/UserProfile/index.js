@@ -40,7 +40,7 @@ const UserProfile = () => {
       const response = await fetch(url, options);
       const data = await response.json();
       if (response.ok) {
-        console.log("userprofile=>", data);
+        // console.log("userprofile=>", data);
         setApiState(apiStatus.success);
         // console.log("success");
         setUserUploads(data.postDetails);
@@ -58,7 +58,7 @@ const UserProfile = () => {
   }, [userId]);
 
   useEffect(() => {
-    console.log("userId from URL:", userId); // Log the userId when the component mounts or userId changes
+    // console.log("userId from URL:", userId); // Log the userId when the component mounts or userId changes
     fetchData(); // Fetch data whenever userId changes
   }, [userId, fetchData]);
 
