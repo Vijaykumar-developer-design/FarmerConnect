@@ -59,6 +59,7 @@ const UserProfile = () => {
 
   useEffect(() => {
     if (!effectRan.current) {
+      console.log("userId from URL:", userId);
       // console.log("Effect applied - only on the FIRST mount");
       fetchData(); // Fetch data only on the first mount
       effectRan.current = false;
