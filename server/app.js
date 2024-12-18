@@ -11,12 +11,13 @@ require("dotenv").config();
 // Initialize Express App and HTTP Server
 const app = express();
 const server = http.createServer(app);
+server.timeout = 30000;
 const io = socketIo(server, {
   cors: {
     origin: "https://farmer-connect-world.vercel.app",
     methods: ["GET", "POST"],
     credentials: true,
-    allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+    // allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
   },
 });
 
@@ -44,7 +45,7 @@ app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
   origin: "https://farmer-connect-world.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+  allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
