@@ -1,4 +1,4 @@
-import { useEffect, useCallback, useState, useRef } from "react";
+import { useEffect, useCallback, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { TailSpin } from "react-loader-spinner";
@@ -15,7 +15,6 @@ const apiStatus = {
   failure: "FAILURE",
 };
 const UserProfile = () => {
-  const effectRan = useRef(true);
   const [apiState, setApiState] = useState(apiStatus.initial);
   const activeUser = useSelector((state) => state.user.userId);
   const { userId } = useParams();
