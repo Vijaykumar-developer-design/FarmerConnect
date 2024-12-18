@@ -107,7 +107,12 @@ app.use(
 const corsOptions = {
   origin: "https://farmer-connect-world.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+  allowedHeaders: [
+    "Content-Type",
+    "X-Requested-With",
+    "Authorization",
+    "Cache-Control",
+  ],
   credentials: true,
   optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };
