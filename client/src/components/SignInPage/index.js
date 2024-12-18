@@ -35,13 +35,10 @@ const SignInPage = () => {
   const changeForgot = () => {
     history.replace("/forgot");
   };
-  function isNumeric(str) {
-    // Regular expression to match only digits
-    const regex = /^\d+$/;
 
-    // Test the string against the regular expression
-    return regex.test(str);
-  }
+  // Helper function to check if a string contains only numbers
+  const isNumeric = (str) => /^\d+$/.test(str);
+
   const submitForm = (e) => {
     e.preventDefault();
     const userDetails = { mobile, password };
@@ -76,6 +73,7 @@ const SignInPage = () => {
         console.error("Error:", error);
       }
     };
+
     if (isNumeric(mobile)) {
       if (mobile.length === 10) {
         fetchData();
@@ -85,8 +83,14 @@ const SignInPage = () => {
     } else {
       setError("Mobile number should contain only numbers");
     }
-  };
 
+    // Handle the Enter key press
+  };
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      submitForm(e);
+    }
+  };
   return (
     <div className="sign-in-success-bg">
       <form name="signinform" onSubmit={submitForm} className="form-success">
@@ -116,6 +120,7 @@ const SignInPage = () => {
             type={showPassword ? "text" : "password"}
             value={password}
             onChange={updatePassword}
+            onKeyDown={handleKeyPress}
             placeholder="Enter your password...."
             className="form-success-input"
             id="password"
