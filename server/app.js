@@ -159,7 +159,6 @@ const io = socketIo(server, {
     credentials: true,
     allowedHeaders: corsOptions.allowedHeaders,
   },
-  transports: ["websocket"],
 });
 
 // Middleware to handle JSON and URL-encoded data
