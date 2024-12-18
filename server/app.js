@@ -44,7 +44,7 @@ app.use(express.urlencoded({ extended: true }));
 const corsOptions = {
   origin: "https://farmer-connect-world.vercel.app",
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
+  allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
   credentials: true,
   optionsSuccessStatus: 200,
 };
