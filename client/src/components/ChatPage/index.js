@@ -109,16 +109,22 @@ const ChatPage = () => {
       sendMessage(); // Call sendMessage function when Enter key is pressed
     }
   };
+
+  // useEffect(() => {
+  //   // Function to scroll to the bottom of the chat box
+  //   const scrollToBottom = () => {
+  //     if (chatBoxRef.current) {
+  //       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+  //     }
+  //   };
+  //   scrollToBottom(); // Scroll to bottom initially
+  //   // Scroll to bottom whenever messages change
+  //   scrollToBottom();
+  // }, [messages]);
   useEffect(() => {
-    // Function to scroll to the bottom of the chat box
-    const scrollToBottom = () => {
-      if (chatBoxRef.current) {
-        chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
-      }
-    };
-    scrollToBottom(); // Scroll to bottom initially
-    // Scroll to bottom whenever messages change
-    scrollToBottom();
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
   }, [messages]);
 
   useEffect(() => {

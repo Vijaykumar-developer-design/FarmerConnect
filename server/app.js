@@ -41,15 +41,45 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
 
 // CORS Configuration
+// const corsOptions = {
+//   origin: "https://farmer-connect-world.vercel.app",
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
+//   credentials: true,
+//   optionsSuccessStatus: 200,
+// };
+// app.use(cors(corsOptions));
+// app.options("*", cors(corsOptions));
+const cors = require("cors");
+
+// Allowed origin
+const allowedOrigin = "https://farmer-connect-world.vercel.app";
+
+// CORS options
 const corsOptions = {
-  origin: "https://farmer-connect-world.vercel.app",
+  origin: allowedOrigin,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "X-Requested-With", "Authorization"],
   credentials: true,
-  optionsSuccessStatus: 200,
+  optionsSuccessStatus: 200, // Some legacy browsers choke on 204
 };
+
+// Apply CORS middleware
 app.use(cors(corsOptions));
+
+// Handle preflight requests
 app.options("*", cors(corsOptions));
+
+// Ensure response headers for preflight
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", allowedOrigin);
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Content-Type, X-Requested-With, Authorization"
+  );
+  next();
+});
 
 // Database Connection
 const uri = process.env.DATABASE_ADDRESS;
